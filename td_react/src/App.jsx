@@ -12,11 +12,11 @@ function Header({ title1, title2, logo }) {
     </header>
   );
 }
-function MainContent() {
+function MainContent({jour, mois, annee, heure, minute, seconde}) {
   return (
     <main>
       <p>
-        Ici, nous afficherons des informations interessantes :)
+      Bonjour, on est le {jour}, {mois}, {annee} et il est {heure}:{minute}:{seconde}
       </p>
     </main>
   )
@@ -38,7 +38,7 @@ function App() {
     <>
       <div>
         <Header title1='Introduction à React'  title2='A la découverte des premières notions de React' logo={university}/>
-        <MainContent />
+        <MainContent jour='Lundi' mois='Decembre' annee='2024' heure='16' minute='30' seconde='00' />
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
