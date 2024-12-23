@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import university from './assets/azurelogo.png'
 import './App.css'
+import data from './../../data.json'
 function Header({ title1, title2, logo }) {
   return (
     <header>
@@ -30,6 +31,30 @@ function Footer({annee, nom, prenom}) {
     </footer>
   )
 }
+function DataExtract({ data }) {
+  const [note, setNote] = useState(null);
+
+  const handleRandomNote = () => {
+    const randomIndex = Math.floor(Math.random() * data.length);
+    setNote(data[randomIndex]);
+  };
+
+  return (
+    <div className="item-display"  >
+      <button onClick={handleRandomNote}>Tirer une note aléatoire</button>
+      {note ? (
+        <div>
+          <h2>Course: {note.course}</h2>
+          <p>Student: {note.student.firstname} {note.student.lastname}</p>
+          <p>Grade: {note.grade}</p>
+          <p>Date: {note.date}</p>
+        </div>
+      ) : (
+        <p>Aucune note sélectionnée</p>
+      )}
+    </div>
+  );
+}
 
 function App() {
   const [count, setCount] = useState(0)
@@ -39,14 +64,8 @@ function App() {
       <div>
         <Header title1='Introduction à React'  title2='A la découverte des premières notions de React' logo={university}/>
         <MainContent jour='Lundi' mois='Decembre' annee='2024' heure='16' minute='30' seconde='00' />
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <DataExtract data={data} />
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
       <button onClick={() => setCount((count) => (count > 0 ? count - 1 : count))}>
           -

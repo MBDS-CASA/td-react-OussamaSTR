@@ -54,3 +54,66 @@ Footer {
   color: white; /* Couleur du texte */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionnel */
 }
+.itemdisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+}
+.item-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  
+}
+
+/* Titre principal */
+.item-display h2 {
+  font-size: 1.5rem;
+  color: #0078d4;
+  margin: 0;
+}
+
+/* Texte général */
+.item-display p {
+  font-size: 1rem;
+  color: white;
+  margin: 0;
+}
+
+/* Style du bouton */
+button {
+  background-color: #0078d4;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+/* Ajout d'une animation lors de l'affichage */
+.item-display {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
