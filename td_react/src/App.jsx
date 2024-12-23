@@ -21,11 +21,11 @@ function MainContent({jour, mois, annee, heure, minute, seconde}) {
     </main>
   )
 }
-function Footer({nom, prenom}) {
+function Footer({annee, nom, prenom}) {
   return (
     <footer>
       
-        Tous droits réservés - {nom} {prenom}
+      © {annee} - {prenom}.{nom}, Tous droits réservés.
     
     </footer>
   )
@@ -65,7 +65,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       
-        <Footer nom='EL RHRIB' prenom='Oussama'/>
+        <Footer annee='2024' nom='EL RHRIB' prenom='Oussama'/>
       
     </>
   )
