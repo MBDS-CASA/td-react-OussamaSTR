@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+Footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  background: radial-gradient(#280a48, #20043d);
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f8f8; /* Optionnel, pour ajouter un fond */
+  font-size: 14px; /* Ajustez selon vos préférences */
+  color: white; /* Couleur du texte */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionnel */
+}
