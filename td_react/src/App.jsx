@@ -11,6 +11,15 @@ function Header({title1, title2}) {
     </header>
   )
 }
+function MainContent() {
+  return (
+    <main>
+      <p>
+        Ici, nous afficherons des informations interessantes :)
+      </p>
+    </main>
+  )
+}
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +28,7 @@ function App() {
     <>
       <div>
         <Header title1='Introduction à React'  title2='A la découverte des premières notions de React'/>
+        <MainContent />
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
