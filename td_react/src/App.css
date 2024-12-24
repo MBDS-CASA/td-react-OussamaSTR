@@ -124,10 +124,10 @@ button:hover {
   width: 30px;
   height: 20px;
   cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
+  position: fixed; /* Position fixe pour rester visible lors du défilement */
+  top: 10px; /* Position en haut */
+  left: 10px; /* Position à gauche */
+  z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
 }
 
 .hamburger-icon div {
@@ -164,8 +164,6 @@ button:hover {
   border-bottom: none;
 }
 
-
-
 /* Animation pour afficher le menu */
 @keyframes slideIn {
   from {
@@ -181,6 +179,7 @@ button:hover {
 .menu-list {
   animation: slideIn 0.3s ease-in-out;
 }
+
 .menu-item.active {
   background-color: #0078d4;
   color: white;
