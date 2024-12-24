@@ -14,6 +14,48 @@ function Header({ title1, title2, logo }) {
     </header>
   );
 }
+function Footer({annee, nom, prenom}) {
+  return (
+    <footer>
+      
+      © {annee} - {prenom}.{nom}, Tous droits réservés.
+    
+    </footer>
+  )
+}
+function MainContent({jour, mois, annee, heure, minute, seconde}) {
+  return (
+    <main>
+      <p>
+      Bonjour, on est le {jour}, {mois}, {annee} et il est {heure}:{minute}:{seconde}
+      </p>
+    </main>
+  )
+}
+function DataExtract({ data }) {
+  const [note, setNote] = useState(null);
+
+  const handleRandomNote = () => {
+    const randomIndex = Math.floor(Math.random() * data.length);
+    setNote(data[randomIndex]);
+  };
+
+  return (
+    <div className="item-display"  >
+      <button onClick={handleRandomNote}>Tirer une note aléatoire</button>
+      {note ? (
+        <div>
+          <h2>Course: {note.course}</h2>
+          <p>Student: {note.student.firstname} {note.student.lastname}</p>
+          <p>Grade: {note.grade}</p>
+          <p>Date: {note.date}</p>
+        </div>
+      ) : (
+        <p>Aucune note sélectionnée</p>
+      )}
+    </div>
+  );
+}
 
 function HamburgerMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,7 +103,23 @@ function App() {
           title2="A la découverte des premières notions de React"
           logo={university}
         />
-        {/* Autres composants ici */}
+        <MainContent jour='Lundi' mois='Decembre' annee='2024' heure='16' minute='30' seconde='00' />
+        <DataExtract data={data} />
+      </div>
+      <div className="card">
+      <button onClick={() => setCount((count) => (count > 0 ? count - 1 : count))}>
+          -
+        </button>
+        <button>
+          count is {count}
+        </button>
+        <button onClick={() => setCount((count) => count + 1)}>
+          +
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+        <Footer annee='2024' nom='EL RHRIB' prenom='Oussama'/>
       </div>
     </>
   );
