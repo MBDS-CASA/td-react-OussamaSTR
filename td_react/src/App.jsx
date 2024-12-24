@@ -72,14 +72,36 @@ function ShowData({ data, menuItem }) {
   return (
     <div>
       
-      <TextField
+  <TextField
   label="Rechercher"
   variant="outlined"
   fullWidth
   margin="normal"
   value={searchQuery}
   onChange={(e) => setSearchQuery(e.target.value)}
+  sx={{
+    backgroundColor: "white",  // Fond blanc pour le tableau
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",  // Bordure blanche
+      },
+      "&:hover fieldset": {
+        borderColor: "white",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
+      },
+    },
+    "& .MuiInputBase-input": {
+      color: "black",  // Texte en noir
+    },
+    "& .MuiInputLabel-root": {
+      color: "blue",  // Label en mauve
+    },
+  }}
 />
+
+
 
 
 
