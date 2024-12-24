@@ -14,11 +14,11 @@ import {
   TextField,
 } from "@mui/material";
 function ShowData({ data, menuItem }) {
-  const [page, setPage] = useState(0); // Pour la pagination
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Nombre de lignes par page
-  const [searchQuery, setSearchQuery] = useState(""); // Pour la recherche
+  const [page, setPage] = useState(0); 
+  const [rowsPerPage, setRowsPerPage] = useState(5); 
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // Filtrer les données en fonction du menuItem sélectionné
+  
   let filteredData;
 
   switch (menuItem) {
@@ -44,7 +44,7 @@ function ShowData({ data, menuItem }) {
       filteredData = [];
   }
 
-  // Appliquer le filtre de recherche
+  
   if (searchQuery) {
     filteredData = filteredData.filter((row) =>
       Object.values(row).some((value) =>
@@ -53,7 +53,7 @@ function ShowData({ data, menuItem }) {
     );
   }
 
-  // Gestion de la pagination
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -63,7 +63,7 @@ function ShowData({ data, menuItem }) {
     setPage(0);
   };
 
-  // Découper les données pour la page actuelle
+ 
   const paginatedData = filteredData.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -80,10 +80,10 @@ function ShowData({ data, menuItem }) {
   value={searchQuery}
   onChange={(e) => setSearchQuery(e.target.value)}
   sx={{
-    backgroundColor: "white",  // Fond blanc pour le tableau
+    backgroundColor: "white",  
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "white",  // Bordure blanche
+        borderColor: "white",  
       },
       "&:hover fieldset": {
         borderColor: "white",
@@ -93,10 +93,10 @@ function ShowData({ data, menuItem }) {
       },
     },
     "& .MuiInputBase-input": {
-      color: "black",  // Texte en noir
+      color: "black",  
     },
     "& .MuiInputLabel-root": {
-      color: "blue",  // Label en mauve
+      color: "blue",  
     },
   }}
 />
@@ -208,12 +208,12 @@ function HamburgerMenu({ menuItems, onSelect, ...props }) {
   const handleItemClick = (item) => {
     setActiveItem(item);
     onSelect(item);
-    setMenuOpen(false); // Fermer le menu après un clic
+    setMenuOpen(false); 
   };
 
   return (
     <div className="hamburger-menu" {...props}>
-      {/* Icône Hamburger */}
+      
       <div className="hamburger-icon" onClick={toggleMenu}>
         <div></div>
         <div></div>
@@ -227,7 +227,7 @@ function HamburgerMenu({ menuItems, onSelect, ...props }) {
             <li
               key={item}
               onClick={() => handleItemClick(item)}
-              className={`menu-item ${item === activeItem ? "active" : ""}`} // Ajout de la classe active
+              className={`menu-item ${item === activeItem ? "active" : ""}`} 
             >
               {item}
             </li>

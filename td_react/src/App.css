@@ -49,10 +49,10 @@ Footer {
   width: 100%;
   text-align: center;
   padding: 10px;
-  background-color: #f8f8f8; /* Optionnel, pour ajouter un fond */
-  font-size: 14px; /* Ajustez selon vos préférences */
-  color: white; /* Couleur du texte */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optionnel */
+  background-color: #f8f8f8; 
+  font-size: 14px; 
+  color: white; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 .itemdisplay {
   display: flex;
@@ -103,7 +103,7 @@ button:hover {
   background-color: #005bb5;
 }
 
-/* Ajout d'une animation lors de l'affichage */
+
 .item-display {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -124,10 +124,10 @@ button:hover {
   width: 30px;
   height: 20px;
   cursor: pointer;
-  position: fixed; /* Position fixe pour rester visible lors du défilement */
-  top: 10px; /* Position en haut */
-  left: 10px; /* Position à gauche */
-  z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+  position: fixed; 
+  top: 10px; 
+  left: 10px; 
+  z-index: 1000; 
 }
 
 .hamburger-icon div {
@@ -138,7 +138,6 @@ button:hover {
   transition: all 0.3s ease;
 }
 
-/* Style pour le menu */
 .menu-list {
   position: fixed;
   top: 50px;
@@ -164,7 +163,7 @@ button:hover {
   border-bottom: none;
 }
 
-/* Animation pour afficher le menu */
+
 @keyframes slideIn {
   from {
     opacity: 0;
