@@ -140,7 +140,7 @@ button:hover {
 
 /* Style pour le menu */
 .menu-list {
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 10px;
   background-color: white;

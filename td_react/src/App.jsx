@@ -2,36 +2,125 @@ import { useState } from 'react';
 import university from './assets/azurelogo.png';
 import './App.css';
 import data from './../../data.json';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TablePagination,
+  TextField,
+} from "@mui/material";
+function ShowData({ data, menuItem }) {
+  const [page, setPage] = useState(0); // Pour la pagination
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Nombre de lignes par page
+  const [searchQuery, setSearchQuery] = useState(""); // Pour la recherche
 
-function ShowData({ data }) {
+  // Filtrer les données en fonction du menuItem sélectionné
+  let filteredData;
+
+  switch (menuItem) {
+    case "Notes":
+      filteredData = data.map(({ course, student, grade, date }) => ({
+        course,
+        student: `${student.firstname} ${student.lastname}`,
+        grade,
+        date,
+      }));
+      break;
+    case "Etudiants":
+      filteredData = data.map(({ student }) => ({
+        firstname: student.firstname,
+        lastname: student.lastname,
+        id: student.id,
+      }));
+      break;
+    case "Matières":
+      filteredData = data.map(({ course }) => ({ course }));
+      break;
+    default:
+      filteredData = [];
+  }
+
+  // Appliquer le filtre de recherche
+  if (searchQuery) {
+    filteredData = filteredData.filter((row) =>
+      Object.values(row).some((value) =>
+        value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }
+
+  // Gestion de la pagination
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  // Découper les données pour la page actuelle
+  const paginatedData = filteredData.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Course</TableCell>
-            <TableCell>Student</TableCell>
-            <TableCell>Grade</TableCell>
-            <TableCell>Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((note, index) => (
-            <TableRow key={index}>
-              <TableCell>{note.course}</TableCell>
-              <TableCell>
-                {note.student && `${note.student.firstname} ${note.student.lastname}`}
-              </TableCell>
-              <TableCell>{note.grade}</TableCell>
-              <TableCell>{note.date}</TableCell>
+    <div>
+      
+      <TextField
+  label="Rechercher"
+  variant="outlined"
+  fullWidth
+  margin="normal"
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+/>
+
+
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {Object.keys(filteredData[0] || {}).map((key, index) => (
+                <TableCell key={index}>{key}</TableCell>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {paginatedData.map((row, index) => (
+              <TableRow key={index}>
+                {Object.values(row).map((value, idx) => (
+                  <TableCell key={idx}>{value}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+  component="div"
+  count={filteredData.length}
+  page={page}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+  
+/>
+      </TableContainer>
+
+    
+
+
+</div>
   );
 }
+
+
 function Header({ title1, title2, logo }) {
   return (
     <header>
@@ -165,9 +254,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           +
         </button>
-        <ShowData data = {data} />
-        <Footer annee='2024' nom='EL RHRIB' prenom='Oussama'/>
+        
+        
       </div>
+      <ShowData data={data} menuItem={currentPage} />
+      <Footer annee='2024' nom='EL RHRIB' prenom='Oussama'/>
     </>
   );
 }
