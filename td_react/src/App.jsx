@@ -1,10 +1,37 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import university from './assets/azurelogo.png';
 import './App.css';
 import data from './../../data.json';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
+function ShowData({ data }) {
+  return (
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Course</TableCell>
+            <TableCell>Student</TableCell>
+            <TableCell>Grade</TableCell>
+            <TableCell>Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((note, index) => (
+            <TableRow key={index}>
+              <TableCell>{note.course}</TableCell>
+              <TableCell>
+                {note.student && `${note.student.firstname} ${note.student.lastname}`}
+              </TableCell>
+              <TableCell>{note.grade}</TableCell>
+              <TableCell>{note.date}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
 function Header({ title1, title2, logo }) {
   return (
     <header>
@@ -127,6 +154,7 @@ function App() {
         <MainContent jour='Lundi' mois='Decembre' annee='2024' heure='16' minute='30' seconde='00' />
         <DataExtract data={data} />
       </div>
+      
       <div className="card">
       <button onClick={() => setCount((count) => (count > 0 ? count - 1 : count))}>
           -
@@ -137,9 +165,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           +
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <ShowData data = {data} />
         <Footer annee='2024' nom='EL RHRIB' prenom='Oussama'/>
       </div>
     </>
