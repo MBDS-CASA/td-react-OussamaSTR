@@ -57,31 +57,40 @@ function DataExtract({ data }) {
   );
 }
 
-function HamburgerMenu() {
+function HamburgerMenu({ menuItems, onSelect, ...props }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(menuItems[0]);
+  
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
-  const menuItems = ['Notes', 'Etudiants', 'Matières', 'A propos'];
+  
 
   const handleItemClick = (item) => {
-    alert(`Vous avez cliqué sur : ${item}`);
-    setMenuOpen(false); // Ferme le menu après un clic
+    setActiveItem(item);
+    onSelect(item);
+    setMenuOpen(false); // Fermer le menu après un clic
   };
 
   return (
-    <div className="hamburger-menu">
+    <div className="hamburger-menu" {...props}>
+      {/* Icône Hamburger */}
       <div className="hamburger-icon" onClick={toggleMenu}>
         <div></div>
         <div></div>
         <div></div>
       </div>
+      
+      
       {menuOpen && (
         <ul className="menu-list">
           {menuItems.map((item) => (
-            <li key={item} onClick={() => handleItemClick(item)}>
+            <li
+              key={item}
+              onClick={() => handleItemClick(item)}
+              className={`menu-item ${item === activeItem ? "active" : ""}`} // Ajout de la classe active
+            >
               {item}
             </li>
           ))}
@@ -90,19 +99,31 @@ function HamburgerMenu() {
     </div>
   );
 }
-
 function App() {
   const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState("Notes");
 
+  const handleMenuSelect = (item) => {
+    setCurrentPage(item);
+  };
   return (
     <>
-      <HamburgerMenu />
+      <HamburgerMenu
+        menuItems={["Notes", "Etudiants", "Matières", "A propos"] }
+        onSelect={handleMenuSelect}
+      />
+      <main>
+        <p>Vous êtes dans la page : {currentPage}</p>
+      </main>
+
       <div>
         <Header
           title1="Introduction à React"
           title2="A la découverte des premières notions de React"
           logo={university}
         />
+        
+        
         <MainContent jour='Lundi' mois='Decembre' annee='2024' heure='16' minute='30' seconde='00' />
         <DataExtract data={data} />
       </div>

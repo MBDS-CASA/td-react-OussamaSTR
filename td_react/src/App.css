@@ -164,9 +164,7 @@ button:hover {
   border-bottom: none;
 }
 
-.menu-list li:hover {
-  background-color: #f0f0f0;
-}
+
 
 /* Animation pour afficher le menu */
 @keyframes slideIn {
@@ -182,4 +180,9 @@ button:hover {
 
 .menu-list {
   animation: slideIn 0.3s ease-in-out;
+}
+.menu-item.active {
+  background-color: #0078d4;
+  color: white;
+  font-weight: bold;
 }
